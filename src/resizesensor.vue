@@ -4,36 +4,39 @@ Copyright of original code is::
   Copyright (c) 2013 Marc J. Schmidt
 -->
 <template>
-    <div v-el:expand class="resize-sensor" :style="style" @scroll="onScroll">
-        <div :style="[childStyle, { width: '100000px', height: '100000px' }]"></div>
-    </div>
-    <div v-el:shrink class="resize-sensor" :style="style" @scroll="onScroll">
-        <div :style="[childStyle, { width: '200%', height: '200%' }]"></div>
+    <div class="resize-sensor" :style="$options.style.root">
+        <div v-el:expand :style="$options.style.parent" @scroll="onScroll">
+            <div :style="[$options.style.child, { width: '100000px', height: '100000px' }]"></div>
+        </div>
+        <div v-el:shrink :style="$options.style.parent" @scroll="onScroll">
+            <div :style="[$options.style.child, { width: '200%', height: '200%' }]"></div>
+        </div>
     </div>
 </template>
 
 <script type="text/javascript">
     export default {
-        data: function() {
-            return {
-                style: {
-                    position: "absolute",
-                    left: 0,
-                    top: 0,
-                    right: 0,
-                    bottom: 0,
-                    overflow: "hidden",
-                    visibility: "hidden",
-                    zIndex: -1
+        style: {
+            root: {
+                visibility: "hidden"
+            },
+            parent: {
+                position: "absolute",
+                left: 0,
+                top: 0,
+                right: 0,
+                bottom: 0,
+                overflow: "hidden",
+                visibility: "hidden",
+                zIndex: -1
 
-                },
-                childStyle: {
-                    position: "absolute",
-                    left: 0,
-                    top: 0,
-                    transition: "0s"
-                }
-            };
+            },
+            child: {
+                position: "absolute",
+                left: 0,
+                top: 0,
+                transition: "0s"
+            }
         },
         methods: {
             reset: function() {
