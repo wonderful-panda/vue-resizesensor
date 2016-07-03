@@ -15,6 +15,7 @@ Copyright of original code is::
 </template>
 
 <script type="text/javascript">
+    import _ from "lodash";
     export default {
         style: {
             root: {
@@ -38,19 +39,27 @@ Copyright of original code is::
                 transition: "0s"
             }
         },
+        props: {
+            debounce: { type: Number, default: 200, validator: v => v >= 0 }
+        },
+        data() {
+            return {
+                emitResized: _.debounce(() => this.$emit("resized"), this.debounce)
+            };
+        },
         methods: {
-            reset: function() {
+            reset() {
                 this.$els.expand.scrollLeft = 100000;
                 this.$els.expand.scrollTop = 100000;
                 this.$els.shrink.scrollLeft = 100000;
                 this.$els.shrink.scrollTop = 100000;
             },
-            onScroll: function() {
-                this.$emit("resized");
+            onScroll() {
+                this.emitResized();
                 this.reset();
             }
         },
-        attached: function() {
+        attached() {
             this.reset();
         }
     };
