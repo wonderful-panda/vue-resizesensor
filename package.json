@@ -3,6 +3,10 @@
   "version": "0.0.3",
   "description": "Vue component which provides element resize event",
   "main": "lib/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wonderful-panda/vue-resizesensor"
+  },
   "scripts": {
     "build": "node compile.js",
     "test": "echo \"Error: no test specified\" && exit 1"
