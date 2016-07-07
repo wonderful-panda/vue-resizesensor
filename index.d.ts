@@ -1,2 +1,2 @@
 declare const resizeSensor: any;
-export = resizeSensor;
+export default resizeSensor;
