@@ -8,7 +8,7 @@
     "url": "https://github.com/wonderful-panda/vue-resizesensor"
   },
   "scripts": {
-    "build": "node compile.js",
+    "build": "babel src/resizesensor.js -o lib/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -18,14 +18,12 @@
   "author": "Iwata Hidetaka",
   "license": "MIT",
   "devDependencies": {
+    "babel-cli": "^6.16.0",
     "babel-core": "^6.9.1",
-    "babel-plugin-transform-runtime": "^6.9.0",
-    "babel-preset-es2015": "^6.9.0",
-    "babel-runtime": "^6.9.2",
-    "vue": "^1.0.28",
-    "vueify": "^8.7.0"
+    "babel-preset-es2015": "^6.16.0"
   },
   "dependencies": {
-    "lodash": "^4.13.1"
+    "lodash": "^4.13.1",
+    "vue": "^2.0.1"
   }
 }
