@@ -5,10 +5,10 @@ Copyright of original code is::
 -->
 <template>
     <div class="resize-sensor" :style="$options.style.root">
-        <div v-el:expand :style="$options.style.parent" @scroll="onScroll">
+        <div ref="expand" :style="$options.style.parent" @scroll="onScroll">
             <div :style="[$options.style.child, { width: '100000px', height: '100000px' }]"></div>
         </div>
-        <div v-el:shrink :style="$options.style.parent" @scroll="onScroll">
+        <div ref="shrink" :style="$options.style.parent" @scroll="onScroll">
             <div :style="[$options.style.child, { width: '200%', height: '200%' }]"></div>
         </div>
     </div>
@@ -49,17 +49,17 @@ Copyright of original code is::
         },
         methods: {
             reset() {
-                this.$els.expand.scrollLeft = 100000;
-                this.$els.expand.scrollTop = 100000;
-                this.$els.shrink.scrollLeft = 100000;
-                this.$els.shrink.scrollTop = 100000;
+                this.$refs.expand.scrollLeft = 100000;
+                this.$refs.expand.scrollTop = 100000;
+                this.$refs.shrink.scrollLeft = 100000;
+                this.$refs.shrink.scrollTop = 100000;
             },
             onScroll() {
                 this.emitResized();
                 this.reset();
             }
         },
-        attached() {
+        mounted() {
             this.reset();
         }
     };
