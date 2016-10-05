@@ -4,6 +4,9 @@
 Vue component which provides element resize event.
 Based on ResizeSensor of [css-element-queries](https://marcj.github.io/css-element-queries/)
 
+## Requirement
+Vue >= 2.0.1
+
 ## USAGE
 
 ```javascript
@@ -12,7 +15,7 @@ Vue.component("resize-sensor", require("vue-resizesensor"));
 const MyComponent = Vue.extend({
     template: `
         <div style="display: relative;">
-            <resize-sensor @resized="onResize"></resize-sensor>
+            <resize-sensor @resized="onResize" :debounce="50"></resize-sensor>
             <div>
                 {{ width }} x {{ height }}
             </div>
