@@ -40,7 +40,7 @@ Copyright of original code is::
             }
         },
         props: {
-            debounce: { type: Number, default: 200, validator: v => v >= 0 }
+            debounce: { type: Number, default: 50, validator: v => v >= 0 }
         },
         data() {
             return {
