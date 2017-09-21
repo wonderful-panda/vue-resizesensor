@@ -1,2 +1,3 @@
-declare const resizeSensor: any;
-export default resizeSensor;
+import Vue from "vue";
+declare const resizeSensor: typeof Vue;
+export = resizeSensor;
