@@ -5,7 +5,7 @@ Vue component which provides element resize event.
 Based on ResizeSensor of [css-element-queries](https://marcj.github.io/css-element-queries/)
 
 ## Requirement
-Vue >= 2.0.1
+Vue >= 2.3.0
 
 ## USAGE
 
