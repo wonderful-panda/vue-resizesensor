@@ -28,11 +28,6 @@ module.exports = {
     props: {
         debounce: { type: Number, default: 50, validator: v => v >= 0 }
     },
-    data() {
-        return {
-            emitResized: _.debounce(() => this.$emit("resized"), this.debounce)
-        };
-    },
     render(createElement) {
         function div(options, ...children) {
             return createElement("div", options, children);
@@ -47,6 +42,11 @@ module.exports = {
                 )
             )
         );
+    },
+    computed: {
+        emitResized() {
+            return _.debounce(() => this.$emit("resized"), this.debounce);
+        }
     },
     methods: {
         reset() {
