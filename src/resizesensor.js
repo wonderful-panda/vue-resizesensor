@@ -14,11 +14,21 @@ var styles = {
         visibility: "hidden",
         zIndex: -1
     },
-    child: {
+    expandChild: {
         position: "absolute",
         left: 0,
         top: 0,
-        transition: "0s"
+        transition: "0s",
+        width: "100000px",
+        height: "100000px"
+    },
+    shrinkChild: {
+        position: "absolute",
+        left: 0,
+        top: 0,
+        transition: "0s",
+        width: "200%",
+        height: "200%"
     }
 };
 
@@ -28,23 +38,17 @@ module.exports = {
         debounce: { type: Number, default: 50, validator: v => v >= 0 }
     },
     render(createElement) {
-        function div(options, ...children) {
+        function div(options, children) {
             return createElement("div", options, children);
         }
-        return div(
-            { class: "resize-sensor", style: styles.root },
+        return div({ class: "resize-sensor", style: styles.root }, [
             div(
                 {
                     ref: "expand",
                     style: styles.parent,
                     on: { scroll: this.onScroll }
                 },
-                div({
-                    style: _.assign(
-                        { width: "100000px", height: "100000px" },
-                        styles.child
-                    )
-                })
+                [div({ style: styles.expandChild })]
             ),
             div(
                 {
@@ -52,14 +56,9 @@ module.exports = {
                     style: styles.parent,
                     on: { scroll: this.onScroll }
                 },
-                div({
-                    style: _.assign(
-                        { width: "200%", height: "200%" },
-                        styles.child
-                    )
-                })
+                [div({ style: styles.shrinkChild })]
             )
-        );
+        ]);
     },
     computed: {
         emitResized() {
