@@ -24,8 +24,8 @@ var styles = {
 };
 
 module.exports = {
-   name: "resizesensor",
-   props: {
+    name: "resizesensor",
+    props: {
         debounce: { type: Number, default: 50, validator: v => v >= 0 }
     },
     data() {
