@@ -13,7 +13,6 @@ var styles = {
         overflow: "hidden",
         visibility: "hidden",
         zIndex: -1
-
     },
     child: {
         position: "absolute",
@@ -32,14 +31,33 @@ module.exports = {
         function div(options, ...children) {
             return createElement("div", options, children);
         }
-        return (
-            div({ "class": "resize-sensor", style: styles.root },
-                div({ ref: "expand", style: styles.parent, on: {scroll: this.onScroll } },
-                    div({ style: _.assign({ width: "100000px", height: "100000px" }, styles.child) })
-                ),
-                div({ ref: "shrink", style: styles.parent, on: {scroll: this.onScroll } },
-                    div({ style: _.assign({ width: "200%", height: "200%" }, styles.child) })
-                )
+        return div(
+            { class: "resize-sensor", style: styles.root },
+            div(
+                {
+                    ref: "expand",
+                    style: styles.parent,
+                    on: { scroll: this.onScroll }
+                },
+                div({
+                    style: _.assign(
+                        { width: "100000px", height: "100000px" },
+                        styles.child
+                    )
+                })
+            ),
+            div(
+                {
+                    ref: "shrink",
+                    style: styles.parent,
+                    on: { scroll: this.onScroll }
+                },
+                div({
+                    style: _.assign(
+                        { width: "200%", height: "200%" },
+                        styles.child
+                    )
+                })
             )
         );
     },
