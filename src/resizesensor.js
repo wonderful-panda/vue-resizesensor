@@ -62,5 +62,8 @@ module.exports = {
     },
     mounted() {
         this.reset();
+    },
+    activated() {
+        this.reset();
     }
 };
