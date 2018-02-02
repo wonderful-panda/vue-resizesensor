@@ -1,6 +1,6 @@
 {
   "name": "vue-resizesensor",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Vue component which provides element resize event",
   "main": "lib/index.js",
   "repository": {
