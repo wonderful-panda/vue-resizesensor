@@ -35,7 +35,8 @@ var styles = {
 module.exports = {
     name: "resizesensor",
     props: {
-        debounce: { type: Number, default: 50, validator: v => v >= 0 }
+        debounce: { type: Number, default: 0, validator: v => v >= 0 },
+        throttle: { type: Number, default: 50, validator: v => v >= 0 }
     },
     render(createElement) {
         function div(options, children) {
@@ -61,8 +62,18 @@ module.exports = {
         ]);
     },
     computed: {
-        emitResized() {
-            return _.debounce(() => this.$emit("resized"), this.debounce);
+        onScroll() {
+            let func = () => {
+                this.$emit("resized");
+                this.reset();
+            };
+            if (this.throttle > 0) {
+                func = _.throttle(func, this.throttle);
+            }
+            if (this.debounce > 0) {
+                func = _.debounce(func, this.debounce);
+            }
+            return func;
         }
     },
     methods: {
@@ -71,10 +82,6 @@ module.exports = {
             this.$refs.expand.scrollTop = 100000;
             this.$refs.shrink.scrollLeft = 100000;
             this.$refs.shrink.scrollTop = 100000;
-        },
-        onScroll() {
-            this.emitResized();
-            this.reset();
         }
     },
     mounted() {
